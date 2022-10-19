@@ -1,0 +1,106 @@
+{
+  "metadata": {
+    "schemaVersion": "1.0",
+    "importType": "LEX",
+    "importFormat": "JSON"
+  },
+  "resource": {
+    "name": "OptionsTradingBot",
+    "version": "1",
+    "intents": [
+      {
+        "name": "optionsTrading",
+        "version": "4",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "I would like to buy stocks",
+          "I need to invest in stocks",
+          "I'm interesting in investing in stocks",
+          "invest in stocks",
+          "I'm looking to invest in stocks",
+          "stocks investing",
+          "can I invest in stocks",
+          "I would like to invest in stocks"
+        ],
+        "slots": [
+          {
+            "sampleUtterances": [],
+            "slotType": "AMAZON.NUMBER",
+            "obfuscationSetting": "NONE",
+            "slotConstraint": "Required",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "How much money (USD) would you like to invest?"
+                }
+              ],
+              "maxAttempts": 2
+            },
+            "priority": 2,
+            "name": "investmentAmount"
+          },
+          {
+            "sampleUtterances": [],
+            "slotType": "AMAZON.AlphaNumeric",
+            "obfuscationSetting": "NONE",
+            "slotConstraint": "Required",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "Please wait as I fetch historical data for {ticker}.."
+                }
+              ],
+              "maxAttempts": 2
+            },
+            "priority": 3,
+            "name": "pleaseWait"
+          },
+          {
+            "sampleUtterances": [],
+            "slotType": "AMAZON.AlphaNumeric",
+            "obfuscationSetting": "NONE",
+            "slotConstraint": "Required",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "Which stock are you interested in investing? (Please enter ticker name)"
+                }
+              ],
+              "maxAttempts": 2
+            },
+            "priority": 1,
+            "name": "ticker"
+          }
+        ]
+      }
+    ],
+    "voiceId": "Joanna",
+    "childDirected": false,
+    "locale": "en-US",
+    "idleSessionTTLInSeconds": 300,
+    "clarificationPrompt": {
+      "messages": [
+        {
+          "contentType": "PlainText",
+          "content": "Sorry, can you please repeat that?"
+        }
+      ],
+      "maxAttempts": 5
+    },
+    "abortStatement": {
+      "messages": [
+        {
+          "contentType": "PlainText",
+          "content": "Sorry, I could not understand. Goodbye."
+        }
+      ]
+    },
+    "detectSentiment": false,
+    "enableModelImprovements": true
+  }
+}
